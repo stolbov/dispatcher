@@ -1,6 +1,7 @@
 var React = require('react');
 
 module.exports = {
-	route: require('./route'),
-	ui: require('./view.jsx')
+	// route: require('./route'),
+	routes: require('./route'),
+	ui: require('./view')
 };

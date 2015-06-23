@@ -11,7 +11,6 @@ var moduleList = require('../../modules_folder/index');
 // });
 
 React.render(
-    // React.createElement(App, {modules: moduleUi}),
     React.createElement(App),
     document.getElementById('app')
 );
