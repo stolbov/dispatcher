@@ -10,10 +10,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(process.cwd(), 'build')));
 
 router(app);
-// app.use('/', function (req, res) {
-//     res.render('index');
-// });
-
 
 var port = process.env.PORT || 4000;
 httpServer.listen(port);
