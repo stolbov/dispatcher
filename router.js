@@ -3,15 +3,15 @@ var moduleList = require('./modules_folder/index');
 
 module.exports = function (app) {
 
+	var setRoute = function(route) {
+		return app.use(route.url, route.router);
+	};
+
 	_.forEach(moduleList, function (moduleName) {
 		try {
-			var includeModule = require('./modules_folder/' + moduleName + '/route');
+			setRoute(require('./modules_folder/' + moduleName + '/route'));
 		} catch (err) {
 			// console.log(err);
-		}
-		
-		if (includeModule) {
-			app.use(includeModule.url, includeModule.router);
 		}
 	});
 

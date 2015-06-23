@@ -15,10 +15,14 @@ var Kernel = React.createClass({
 	render: function () {
 
 		var moduleUi = [];
-		_.forEach(moduleList, function (module) {
-			module = require('../../modules_folder/' + module + '/index');
-			if (module.ui) {
-				moduleUi.push(module.ui);
+		_.forEach(moduleList, function (moduleName) {
+			try {
+				var module = require('../../modules_folder/' + moduleName + '/view');
+				if (module) {
+					moduleUi.push(module);
+				}
+			} catch (err) {
+				console.log('Module ' + moduleName + ' have no "view.jsx"');
 			}
 		})
 
