@@ -5,6 +5,8 @@ var AppStore = require('../../src/js/app-store');
 
 var ModuleName = "firstUI";
 
+require('./styles.less');
+
 module.exports = React.createClass({ 
 	
 	componentDidMount: function () {
@@ -16,16 +18,30 @@ module.exports = React.createClass({
     },
 
     getInitialState: function () {
+    	AppStore.sendMsg("test", "ui 1");
+  //   	var topPos = AppStore.getDataByName("topPosition");
+		// console.log(topPos);
+		// if (topPos == undefined) {
+		// 	topPos = 10;
+		// }
+		// AppActions.setGlobalData("topPosition", topPos + 200);
+
     	return {
     		msg: AppStore.getDataByName("mapMsg"),
-    		openedPanel: AppStore.getDataByName("openedPanel")
+    		openedPanel: AppStore.getDataByName("openedPanel"),
+    		topPos: 10
     	};
     },
 
 	render: function () {
-		if (this.state.openedPanel !== ModuleName) {
+		if (this.state.openedPanel == ModuleName) {
 			return (
-				<div>
+				<div
+					className="ui"
+					style={{
+						top: this.state.topPos
+					}}
+				>
 					<div
 						onClick={ this.handleChangeView }
 						style={{
@@ -42,7 +58,12 @@ module.exports = React.createClass({
 			)
 		} else {
 			return (
-				<div>
+				<div
+					className="ui"
+					style={{
+						top: this.state.topPos
+					}}
+				>
 					<div>
 						<h3>-- ui module view --</h3>
 					</div>
@@ -89,12 +110,12 @@ module.exports = React.createClass({
 	},
 
 	handleChangeView: function () {
-		var openedPanelName = AppStore.getDataByName("openedPanel"); 
-		if (this.state.openedPanelName == ModuleName) {
-			AppActions.setGlobalData("openedPanel", false);
-		} else {
-			AppActions.setGlobalData("openedPanel", ModuleName);
-		}
+		// var openedPanelName = AppStore.getDataByName("openedPanel"); 
+		// if (this.state.openedPanelName == ModuleName) {
+		// 	AppActions.setGlobalData("openedPanel", false);
+		// } else {
+		// 	AppActions.setGlobalData("openedPanel", ModuleName);
+		// }
 	},
 
 	handleClick: function () {

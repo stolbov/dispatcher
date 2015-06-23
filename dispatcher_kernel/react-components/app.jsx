@@ -6,9 +6,12 @@ var moduleList = require('../../modules_folder/index');
 var AppActions = require('../../src/js/app-actions');
 var AppStore = require('../../src/js/app-store');
 
+require('../../src/css/app.less');
+
 var Kernel = React.createClass({
 
 	componentDidMount: function () {
+    	AppStore.sendMsg("test", "app...");
 		AppActions.setGlobalData("openedPanel", false);
 	},
 
@@ -20,6 +23,7 @@ var Kernel = React.createClass({
 				var module = require('../../modules_folder/' + moduleName + '/view');
 				if (module) {
 					moduleUi.push(module);
+					AppActions.setGlobalData("topPosition", topPos + 200);
 				}
 			} catch (err) {
 				console.log('Module ' + moduleName + ' have no "view.jsx"');
@@ -36,7 +40,7 @@ var Kernel = React.createClass({
 		});
 
 		return (
-			<div>
+			<div className="main">
 				<h1>
 					Dispatcher
 				</h1>

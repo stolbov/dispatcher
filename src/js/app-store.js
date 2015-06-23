@@ -33,6 +33,7 @@ module.exports = Reflux.createStore({
     },
 
     onSendMsg: function (msgChanel, msgBody) {
+        console.log(msgBody);
         this.trigger({
             msgChanel: msgChanel,
             msgBody: msgBody

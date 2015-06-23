@@ -17,9 +17,27 @@ module.exports = {
     module: {
         loaders: [
 
-            {test: /\.jsx$/, loader: 'jsx-loader'}
+            {
+                test: /\.jsx$/, 
+                loader: 'jsx-loader'
+            },
+
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            }
+
         ]
     },
+
+    plugins: [
+        new ExtractTextPlugin("css/app.css")
+    ],
 
     devtool: '#inline-source-map'
 

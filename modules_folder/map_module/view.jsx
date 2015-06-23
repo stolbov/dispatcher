@@ -5,6 +5,8 @@ var AppStore = require('../../src/js/app-store');
 
 var EmptyMsg = "no data";
 
+require('./styles.less');
+
 module.exports = React.createClass({    
 	
 	componentDidMount: function () {
@@ -16,6 +18,7 @@ module.exports = React.createClass({
     },
 
     getInitialState: function () {
+    	AppStore.sendMsg("test", "map");
     	return {
     		msg: AppStore.getDataByName("msg") || EmptyMsg
     	};
@@ -23,7 +26,7 @@ module.exports = React.createClass({
 
 	render: function () {
 		return (
-			<div>
+			<div className="map">
 				<div> 
 					<h3>-- map module view --</h3>
 				</div>
